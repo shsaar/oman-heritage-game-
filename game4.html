@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>استكشاف الأسواق العُمانية</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>استكشاف الأسواق العُمانية</h1>
+    <nav>
+      <ul class="navbar">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="game1.html">لعبة الألغاز</a></li>
+        <li><a href="game2.html">لعبة الحرف اليدوية</a></li>
+        <li><a href="game3.html">سباق القوارب</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="game-description">
+      <h2>المرحلة <span id="market-stage">1</span> من استكشاف الأسواق</h2>
+      <div id="market-question"></div>
+      <button id="next-market" onclick="nextMarket()">التالي</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 لعبة التراث العُماني | جميع الحقوق محفوظة</p>
+  </footer>
+
+  <script>
+    let marketStage = 1;
+    const markets = [
+      { question: 'ما هو السوق العماني التقليدي الأكثر شهرة؟', answer: 'سوق مطرح' },
+      { question: 'أي سوق مشهور في مدينة نزوى؟', answer: 'سوق نزوى' }
+    ];
+
+    function loadMarketQuestion() {
+      const market = markets[marketStage - 1];
+      document.getElementById('market-question').textContent = market.question;
+      document.getElementById('market-stage').textContent = marketStage;
+    }
+
+    function nextMarket() {
+      if (marketStage < markets.length) {
+        marketStage++;
+        loadMarketQuestion();
+      } else {
+        document}}

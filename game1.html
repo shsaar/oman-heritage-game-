@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لعبة الألغاز العُمانية</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>لعبة الألغاز العُمانية</h1>
+    <nav>
+      <ul class="navbar">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="game2.html">لعبة الحرف اليدوية</a></li>
+        <li><a href="game3.html">سباق القوارب</a></li>
+        <li><a href="game4.html">استكشاف الأسواق</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="game-description">
+      <h2>المرحلة <span id="stage">1</span> من الأسئلة</h2>
+      <div id="question"></div>
+      <div id="options"></div>
+      <div id="result"></div>
+      <button id="next-button" onclick="nextQuestion()">التالي</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 لعبة التراث العُماني | جميع الحقوق محفوظة</p>
+  </footer>
+
+  <script>
+    let stage = 1;
+    const questions = [
+      {
+        question: 'ما هي عاصمة عمان؟',
+        options: ['مسقط', 'صلالة', 'نزوى'],
+        correctAnswer: 'مسقط'
+      },
+      {
+        question: 'ما هو نوع القماش العماني التقليدي؟',
+        options: ['الخريف', 'الحرير', 'الصوف'],
+        correctAnswer: 'الخريف'
+      },
+      {
+        question: 'ما هي الرياضة التقليدية في عمان؟',
+        options: ['الهوكي', 'السباحة', 'الفروسية'],
+        correctAnswer: 'الفروسية'
+      }
+    ];
+
+    function loadQuestion() {
+      const question = questions[stage - 1];
+      document.getElementById('question').textContent = question.question;
+      const optionsHTML = question.options.map(option =>
+        `<button onclick="checkAnswer('${option}')">${option}</button>`
+      ).join('');
+      document.getElementById('options').innerHTML = optionsHTML;
+    }
+
+    function checkAnswer(selected) {
+      const correctAnswer = questions[stage - 1].correctAnswer;
+      if (selected === correctAnswer) {
+        document.getElementById('result').textContent = 'إجابة صحيحة!';
+      } else {
+        document.getElementById('result').textContent = 'إجابة خاطئة! حاول مرة أخرى.';
+      }
+    }
+
+    function nextQuestion() {
+      if (stage < questions.length) {
+        stage++;
+        document.getElementById('stage').textContent = stage;
+        document.getElementById('result').textContent = '';
+        loadQuestion();
+      } else {
+        document.getElementById('result').textContent = 'لقد أكملت جميع الأسئلة!';
+        document.getElementById('next-button').disabled = true;
+      }
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لعبة الحرف اليدوية العُمانية</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>لعبة الحرف اليدوية العُمانية</h1>
+    <nav>
+      <ul class="navbar">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="game1.html">لعبة الألغاز</a></li>
+        <li><a href="game3.html">سباق القوارب</a></li>
+        <li><a href="game4.html">استكشاف الأسواق</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="game-description">
+      <h2>المرحلة <span id="craft-stage">1</span> من الحرف اليدوية</h2>
+      <div id="craft-details"></div>
+      <button id="next-craft" onclick="nextCraft()">التالي</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 لعبة التراث العُماني | جميع الحقوق محفوظة</p>
+  </footer>
+
+  <script>
+    let craftStage = 1;
+    const crafts = [
+      'الخريف هو نوع من النسيج التقليدي الذي يتميز به العمانيون في صنع الملابس.',
+      'الفضة العمانية تُستخدم لصنع الحُلي التقليدية مثل الأساور والخواتم.',
+      'الفخار هو نوع من الحرف اليدوية التي تتميز بصناعة الأواني والمزهريات باستخدام الطين.'
+    ];
+
+    function loadCraft() {
+      document.getElementById('craft-details').textContent = crafts[craftStage - 1];
+      document.getElementById('craft-stage').textContent = craftStage;
+    }
+
+    function nextCraft() {
+      if (craftStage < crafts.length) {
+        craftStage++;
+        loadCraft();
+      } else {
+        document.getElementById('craft-details').textContent = 'لقد أكملت جميع الحرف اليدوية!';
+        document.getElementById('next-craft').disabled = true;
+      }
+    }
+
+    loadCraft();
+  </script>
+</body>
+</html>

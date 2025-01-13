@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سباق القوارب العُمانية</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .race-track {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      background-color: #87CEFA;
+    }
+    .boat {
+      position: absolute;
+      bottom: 0;
+      width: 50px;
+      height: 30px;
+      background-color: #FF6347;
+      border-radius: 5px;
+    }
+    .boat2 {
+      background-color: #4682B4;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>سباق القوارب العُمانية</h1>
+    <nav>
+      <ul class="navbar">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="game1.html">لعبة الألغاز</a></li>
+        <li><a href="game2.html">لعبة الحرف اليدوية</a></li>
+        <li><a href="game4.html">استكشاف الأسواق</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="game-description">
+      <h2>انطلق في السباق!</h2>
+      <button onclick="startRace()">ابدأ السباق</button>
+      <div class="race-track">
+        <div id="boat1" class="boat"></div>
+        <div id="boat2" class="boat boat2"></div>
+      </div>
+      <div id="race-result"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 لعبة التراث العُماني | جميع الحقوق محفوظة</p>
+  </footer>
+
+  <script>
+    function startRace() {
+      const boat1 = document.getElementById('boat1');
+      const boat2 = document.getElementById('boat2');
+      let boat1Position = 0;
+      let boat2Position = 0;
+      
+      const raceInterval = setInterval(function() {
+        boat1Position += Math.random() * 5;
+        boat2Position += Math.random() * 5;
+
+        boat1.style.left = boat1Position + 'px';
+        boat2.style.left = boat2Position + 'px';
+
+        if (boat1Position > 800 || boat2Position > 800) {
+          clearInterval(raceInterval);
+          const winner = boat1Position > boat2Position ? 'قاربك' : 'القارب الآخر';
+          document.getElementById('race-result').textContent = winner + ' فاز في السباق!';
+        }
+      }, 100);
+    }
+  </script>
+</body>
+</html>
